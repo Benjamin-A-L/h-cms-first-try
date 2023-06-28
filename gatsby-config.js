@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: '.env',
+})
 /**
  * Configure your Gatsby site with this file.
  *
@@ -15,6 +18,15 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
+    'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-source-prismic',
+      options:{
+        repositoryName: process.env.GATSBY_PRISMIC_REPO,
+        customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
+        accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+      },
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
